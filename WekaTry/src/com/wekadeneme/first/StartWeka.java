@@ -1,7 +1,5 @@
 package com.wekadeneme.first;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.Random;
 
 import weka.classifiers.Evaluation;
@@ -10,7 +8,6 @@ import weka.classifiers.functions.Logistic;
 import weka.classifiers.rules.OneR;
 import weka.classifiers.trees.J48;
 import weka.classifiers.trees.RandomForest;
-import weka.clusterers.SimpleKMeans;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 
