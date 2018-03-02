@@ -12,7 +12,7 @@ public class CSV2Arfff {
 		
 		// Load CSV File
 		CSVLoader loader = new CSVLoader();
-		loader.setSource(new File("C:\\Users\\user\\Desktop\\yapayzeka\\SacramentocrimeJanuary2006.csv"));
+		loader.setSource(new File("./sources/datasets/csv/SacramentocrimeJanuary2006.csv"));
 		Instances data = loader.getDataSet();
 		
 		
@@ -20,7 +20,7 @@ public class CSV2Arfff {
 		ArffSaver saver = new ArffSaver();
 		saver.setInstances(data);// set the dataset we want convert
 		//save as Arff
-		saver.setFile(new File("C:\\Users\\user\\Desktop\\yapayzeka\\results\\csv3.arff"));
+		saver.setFile(new File("./sources/results/csv2arff.arff"));
 		saver.writeBatch();
 		
 	}

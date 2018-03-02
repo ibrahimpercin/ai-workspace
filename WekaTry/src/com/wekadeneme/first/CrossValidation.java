@@ -14,9 +14,9 @@ public class CrossValidation {
 
 	public static void main(String[] args) throws Exception, IOException {
 
-		DataSource source = new DataSource("C:\\Program Files\\Weka-3-8\\data\\glass.arff");
+		DataSource dataSource = new DataSource("./sources/datasets/glass.arff");
 
-		Instances data = source.getDataSet();
+		Instances data = dataSource.getDataSet();
 
 		if (data.classIndex() == -1)
 			data.setClassIndex(data.numAttributes() - 1);
@@ -72,7 +72,7 @@ public class CrossValidation {
 		
 		ArffSaver saver = new ArffSaver();
 		saver.setInstances(data);
-		saver.setFile(new File("C:\\Users\\user\\Desktop\\yapayzeka\\results\\new.arff"));
+		saver.setFile(new File("./sources/results/crossvalidation.arff"));
 		saver.writeBatch();
 	}
 

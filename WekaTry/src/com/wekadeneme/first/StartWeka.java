@@ -17,9 +17,9 @@ import weka.core.converters.ConverterUtils.DataSource;
 public class StartWeka {
 
 	public static void main(String[] args) throws Exception {
-		DataSource source = new DataSource("C:\\Program Files\\Weka-3-8\\data\\iris.arff");
+		DataSource dataSource = new DataSource("./sources/datasets/iris.arff");
 
-		Instances trainData = source.getDataSet();
+		Instances trainData = dataSource.getDataSet();
 
 		// Setting class attribute
 		/**
