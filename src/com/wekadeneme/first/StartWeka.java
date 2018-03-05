@@ -72,10 +72,10 @@ public class StartWeka {
 		System.out.println("Recall = " + eval.recall(1));
 		System.out.println("fMeasure = " + eval.fMeasure(1));
 		System.out.println("Error Rate = " + eval.errorRate());
-		
-	    //the confusion matrix
-			System.out.println(eval.toMatrixString("\n=== Overall Confusion Matrix ===\n"));
-			
+
+		// the confusion matrix
+		System.out.println(eval.toMatrixString("\n=== Overall Confusion Matrix ===\n"));
+
 	}
 
 }

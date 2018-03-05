@@ -1,4 +1,4 @@
-package com.wekadeneme.first;
+package com.wekadeneme.first.attr;
 
 import weka.core.AttributeStats;
 import weka.core.Instance;
