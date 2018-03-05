@@ -16,32 +16,30 @@ public class AttributeSelect {
 		// Load Data
 		DataSource dataSource = new DataSource("./sources/datasets/iris.arff");
 		Instances data = dataSource.getDataSet();
-		
+
 		// Create Atrribute Selection
 		AttributeSelection selectionFilter = new AttributeSelection();
-		
+
 		// Create evaluator and search algorithm objects
-		CfsSubsetEval eval = new  CfsSubsetEval();
-		GreedyStepwise search = new  GreedyStepwise();
-		//set the algorithm to search backward
+		CfsSubsetEval eval = new CfsSubsetEval();
+		GreedyStepwise search = new GreedyStepwise();
+		// set the algorithm to search backward
 		search.setSearchBackwards(true);
-		//set the filter to use evaluator and search algorithm
+		// set the filter to use evaluator and search algorithm
 		selectionFilter.setEvaluator(eval);
 		selectionFilter.setSearch(search);
-		
-		
+
 		// specify the dataset
 		selectionFilter.setInputFormat(data);
-		//apply filter to dataset
+		// apply filter to dataset
 		Instances filteredData = Filter.useFilter(data, selectionFilter);
-		
-		
-		//save
+
+		// save
 		ArffSaver saver = new ArffSaver();
 		saver.setInstances(filteredData);
 		saver.setFile(new File("./sources/results/attributeSelectionResult.arff"));
 		saver.writeBatch();
-		
+
 		System.out.println("Build Successfull !");
 	}
 

@@ -21,16 +21,20 @@ public class CrossValidation {
 		if (data.classIndex() == -1)
 			data.setClassIndex(data.numAttributes() - 1);
 
+		int folds = 10;
+		
+		int size = data.numInstances() / folds;
+		int begin = 0;
+		int end = size - 1;
+		
+
 		double precision = 0;
 		double recall = 0;
 		double fmeasure = 0;
 		double error = 0;
 
-		int size = data.numInstances() / 10;
-		int begin = 0;
-		int end = size - 1;
 
-		for (int i = 0; i <= 10; i++) {
+		for (int i = 0; i <= folds; i++) {
 			System.out.println("=========================\nIteration: " + i + "\n-------------------------");
 			Instances trainingInstances = new Instances(data);
 			Instances testIntances = new Instances(data, begin, (end - begin));
@@ -40,17 +44,18 @@ public class CrossValidation {
 
 			NaiveBayes naiveBayes = new NaiveBayes();
 			naiveBayes.buildClassifier(trainingInstances);
-			
+
 			J48 j48 = new J48();
 			j48.buildClassifier(trainingInstances);
-			
+
 			Evaluation evaluation = new Evaluation(testIntances);
 			evaluation.evaluateModel(j48, testIntances);
 
-			System.out.println("P: " + evaluation.precision(1));
-			System.out.println("R: " + evaluation.recall(1));
-			System.out.println("F: " + evaluation.fMeasure(1));
-			System.out.println("E: " + evaluation.errorRate());
+			System.out.println("Precision: " + evaluation.precision(1));
+			System.out.println("Recall: " + evaluation.recall(1));
+			System.out.println("FMeasure: " + evaluation.fMeasure(1));
+			System.out.println("ErroRate: " + evaluation.errorRate());
+			System.out.println("Kappa: " + evaluation.kappa());
 
 			precision += evaluation.precision(1);
 			recall += evaluation.recall(1);
@@ -60,16 +65,16 @@ public class CrossValidation {
 			// UPDATE
 			begin = end + 1;
 			end += size;
-			if (i == (9)) {
+			if (i == (folds - 1)) {
 				end = data.numInstances();
 			}
 		}
 		System.out.println("\n=========== Results =============\n");
-		System.out.println("Precision: " + precision / 10.0);
-		System.out.println("Recall: " + recall / 10.0);
-		System.out.println("FMeasure: " + fmeasure / 10.0);
-		System.out.println("Error: " + error / 10.0);
-		
+		System.out.println("Precision: " + precision / folds);
+		System.out.println("Recall: " + recall / folds);
+		System.out.println("FMeasure: " + fmeasure / folds);
+		System.out.println("Error: " + error / folds);
+
 		ArffSaver saver = new ArffSaver();
 		saver.setInstances(data);
 		saver.setFile(new File("./sources/results/crossvalidation.arff"));

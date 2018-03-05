@@ -14,9 +14,11 @@ import weka.core.converters.ConverterUtils.DataSource;
 public class StartWeka {
 
 	public static void main(String[] args) throws Exception {
-		DataSource dataSource = new DataSource("./sources/datasets/iris.arff");
+		DataSource dataSource = new DataSource("./sources/datasets/segment-challenge.arff");
+		DataSource dataTestSource = new DataSource("./sources/datasets/segment-test.arff");
 
 		Instances trainData = dataSource.getDataSet();
+		Instances testData = dataTestSource.getDataSet();
 
 		// Setting class attribute
 		/**
@@ -25,6 +27,8 @@ public class StartWeka {
 		 */
 		if (trainData.classIndex() == -1)
 			trainData.setClassIndex(trainData.numAttributes() - 1);
+		if (testData.classIndex() == -1)
+			testData.setClassIndex(testData.numAttributes() - 1);
 
 		// Naive Bayes
 		NaiveBayes naiveBayes = new NaiveBayes();
@@ -50,15 +54,28 @@ public class StartWeka {
 		j48.buildClassifier(trainData);
 
 		Evaluation eval = new Evaluation(trainData);
-		eval.crossValidateModel(j48, trainData, 10, new Random(1));
+		eval.crossValidateModel(forest, testData, 10, new Random(1));
 
 		// Evaluation evaluation = new EM();
 
 		System.out.println(eval.toSummaryString("\nResults\n======\n", true));
 
-		System.out.println("FMeasure => " + eval.fMeasure(1) + " - Precision => " + eval.precision(1) + " - Recall => "
-				+ eval.recall(1) + "\nFNegative => " + eval.falseNegativeRate(1) + " - FPositive => "
-				+ eval.falsePositiveRate(1));
+		System.out.println("Correct % = " + eval.pctCorrect());
+		System.out.println("Incorrect % = " + eval.pctIncorrect());
+		System.out.println("AUC = " + eval.areaUnderROC(1));
+		System.out.println("kappa = " + eval.kappa());
+		System.out.println("MAE = " + eval.meanAbsoluteError());
+		System.out.println("RMSE = " + eval.rootMeanSquaredError());
+		System.out.println("RAE = " + eval.relativeAbsoluteError());
+		System.out.println("RRSE = " + eval.rootRelativeSquaredError());
+		System.out.println("Precision = " + eval.precision(1));
+		System.out.println("Recall = " + eval.recall(1));
+		System.out.println("fMeasure = " + eval.fMeasure(1));
+		System.out.println("Error Rate = " + eval.errorRate());
+		
+	    //the confusion matrix
+			System.out.println(eval.toMatrixString("\n=== Overall Confusion Matrix ===\n"));
+			
 	}
 
 }

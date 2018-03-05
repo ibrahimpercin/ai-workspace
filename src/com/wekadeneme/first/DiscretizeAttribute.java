@@ -14,26 +14,25 @@ public class DiscretizeAttribute {
 
 		DataSource dataSource = new DataSource("./sources/datasets/cpu.arff");
 		Instances data = dataSource.getDataSet();
-		
-		//Set Options
-		String [] options = new String[4];
+
+		// Set Options
+		String[] options = new String[4];
 		options[0] = "-B";
 		options[1] = "4";
 		options[2] = "-R";
 		options[3] = "0";
-		
+
 		// Apply Discretization
 		Discretize discretize = new Discretize();
 		discretize.setOptions(options);
 		discretize.setInputFormat(data);
-		
+
 		Instances discFilteredData = Filter.useFilter(data, discretize);
-		
-		
+
 		ArffSaver saver = new ArffSaver();
 		saver.setInstances(discFilteredData);
 		saver.setFile(new File("./sources/results/discFilter.arff"));
-		saver.writeBatch();		
+		saver.writeBatch();
 	}
 
 }

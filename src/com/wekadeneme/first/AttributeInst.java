@@ -13,7 +13,7 @@ public class AttributeInst {
 		DataSource dataSource = new DataSource("./sources/datasets/iris.arff");
 		Instances data = dataSource.getDataSet();
 
-		// set class index .. as the last attribute
+		// set class index as the last attribute
 		if (data.classIndex() == -1) {
 			data.setClassIndex(data.numAttributes() - 1);
 		}
