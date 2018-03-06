@@ -1,8 +1,9 @@
-package com.wekadeneme.first.assoc;
+package com.wekadeneme.first.association;
 
 import weka.associations.Apriori;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
+import weka.experiment.InstanceQuery;
 
 public class AssocRules {
 
@@ -16,11 +17,12 @@ public class AssocRules {
 
 		// Create apriori object and Set number of rules
 		Apriori apriori = new Apriori();
+	
 		apriori.setNumRules(numberOfRules);
 
 		// Apply
 		apriori.buildAssociations(data);
-
+		
 		System.out.println(apriori);
 
 	}
