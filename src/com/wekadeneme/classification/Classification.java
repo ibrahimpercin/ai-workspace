@@ -1,4 +1,4 @@
-package com.wekadeneme.first.classification;
+package com.wekadeneme.classification;
 
 import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.functions.SMO;

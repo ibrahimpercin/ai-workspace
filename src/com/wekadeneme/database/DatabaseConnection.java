@@ -1,4 +1,4 @@
-package com.wekadeneme.first.database;
+package com.wekadeneme.database;
 
 import weka.core.Instances;
 import weka.experiment.InstanceQuery;

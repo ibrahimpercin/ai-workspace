@@ -1,4 +1,4 @@
-package com.wekadeneme.first.attr;
+package com.wekadeneme.attr;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package com.wekadeneme.first.association;
+package com.wekadeneme.association;
 
 import weka.associations.Apriori;
 import weka.core.Instances;

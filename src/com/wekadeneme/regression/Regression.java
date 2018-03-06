@@ -1,4 +1,4 @@
-package com.wekadeneme.first.regression;
+package com.wekadeneme.regression;
 
 import weka.classifiers.functions.LinearRegression;
 import weka.classifiers.functions.SMOreg;

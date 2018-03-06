@@ -1,4 +1,4 @@
-package com.wekadeneme.first;
+package com.wekadeneme;
 
 import java.io.File;
 import java.io.IOException;
