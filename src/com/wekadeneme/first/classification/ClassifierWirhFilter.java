@@ -1,4 +1,4 @@
-package com.wekadeneme.first;
+package com.wekadeneme.first.classification;
 
 import weka.classifiers.meta.FilteredClassifier;
 import weka.classifiers.trees.J48;
