@@ -16,7 +16,9 @@ public class LoadModel {
 		DataSource dataSource = new DataSource("./sources/datasets/cpu.arff");
 		Instances data = dataSource.getDataSet();
 		// set class index as last attribute
-		data.setClassIndex(data.numAttributes() - 1);
+		if (data.classIndex() == -1) {
+			data.setClassIndex(data.numAttributes() - 1);
+		}
 		
 		// get class double value for first instance
 		double actualValue = data.instance(0).classValue();

@@ -9,7 +9,7 @@ public class AssocRules {
 
 	public static void main(String[] args) throws Exception {
 		// Load Data
-		DataSource dataSource = new DataSource("./sources/datasets/vote.arff");
+		DataSource dataSource = new DataSource("./sources/datasets/supermarket.arff");
 		Instances data = dataSource.getDataSet();
 
 		// Set number of rules

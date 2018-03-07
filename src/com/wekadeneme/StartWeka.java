@@ -14,6 +14,7 @@ import weka.core.converters.ConverterUtils.DataSource;
 public class StartWeka {
 
 	public static void main(String[] args) throws Exception {
+		// Load Data
 		DataSource dataSource = new DataSource("./sources/datasets/segment-challenge.arff");
 		DataSource dataTestSource = new DataSource("./sources/datasets/segment-test.arff");
 
@@ -46,17 +47,11 @@ public class StartWeka {
 		RandomForest forest = new RandomForest();
 		forest.buildClassifier(trainData);
 
-		// Linear Regression
-		// LinearRegression linearRegression = new LinearRegression();
-		// linearRegression.buildClassifier(train);
-
 		J48 j48 = new J48();
 		j48.buildClassifier(trainData);
 
 		Evaluation eval = new Evaluation(trainData);
 		eval.crossValidateModel(forest, testData, 10, new Random(1));
-
-		// Evaluation evaluation = new EM();
 
 		System.out.println(eval.toSummaryString("\nResults\n======\n", true));
 
